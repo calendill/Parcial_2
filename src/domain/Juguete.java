@@ -2,9 +2,8 @@ package domain;
 
 public interface Juguete  {
 
-    long getId();
-
+    int getId();
+    String getColor();
     Juguete clone();
-
-    void setId(long id);
+    void setId(int id);
 }

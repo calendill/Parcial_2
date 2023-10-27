@@ -1,15 +1,15 @@
-package domain.impl;
 
+package domain.impl;
 import domain.Juguete;
 
-public class Carrito implements Juguete {
+public class Carrito implements Juguete,Comparable<Carrito> {
 
-    private long id;
+    private int id;
     private String color;
-    private short numeroPuertas;
+    private int numeroPuertas;
     private String marca;
 
-    public Carrito(long id, String color, short numeroPuertas, String marca) {
+    public Carrito(int id, String color, int numeroPuertas, String marca) {
         this.id = id;
         this.color = color;
         this.numeroPuertas = numeroPuertas;
@@ -17,8 +17,16 @@ public class Carrito implements Juguete {
     }
 
     @Override
-    public long getId() {
+    public int getId() {
         return this.id;
+    }
+    
+    public int getNumeroPuertas() {
+    	return this.numeroPuertas;
+    }
+    
+    public String getColor() {
+    	return this.color;
     }
 
     @Override
@@ -31,7 +39,7 @@ public class Carrito implements Juguete {
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,12 +48,12 @@ public class Carrito implements Juguete {
     }
 
     public static class CarritoBuilder {
-        private long id;
+        private int id;
         private String color;
-        private short numeroPuertas;
+        private int numeroPuertas;
         private String marca;
 
-        public CarritoBuilder id(long id) {
+        public CarritoBuilder id(int id) {
             this.id = id;
             return this;
         }
@@ -55,7 +63,7 @@ public class Carrito implements Juguete {
             return this;
         }
 
-        public CarritoBuilder numeroPuertas(short numeroPuertas) {
+        public CarritoBuilder numeroPuertas(int numeroPuertas) {
             this.numeroPuertas = numeroPuertas;
             return this;
         }
@@ -68,6 +76,9 @@ public class Carrito implements Juguete {
         public Carrito build() {
             return new Carrito(id, color, numeroPuertas, marca);
         }
+
+
+
     }
 
     @Override
@@ -79,4 +90,9 @@ public class Carrito implements Juguete {
                 ", marca='" + marca + '\'' +
                 '}';
     }
+
+	@Override
+	public int compareTo(Carrito o) {
+		return Integer.compare(this.id, o.id);
+	}
 }

@@ -2,14 +2,14 @@ package domain.impl;
 
 import domain.Juguete;
 
-public class Peluche implements Juguete {
+public class Peluche implements Juguete,Comparable<Peluche> {
 
-    private long id;
+    private int id;
     private String relleno;
     private String materialExterior;
     private String color;
 
-    public Peluche(long id, String relleno, String materialExterior, String color) {
+    public Peluche(int id, String relleno, String materialExterior, String color) {
         this.id = id;
         this.relleno = relleno;
         this.materialExterior = materialExterior;
@@ -17,8 +17,12 @@ public class Peluche implements Juguete {
     }
 
     @Override
-    public long getId() {
+    public int getId() {
         return this.id;
+    }
+    
+    public String getColor() {
+    	return this.color;
     }
 
     @Override
@@ -31,7 +35,7 @@ public class Peluche implements Juguete {
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,12 +44,12 @@ public class Peluche implements Juguete {
     }
 
     public static class PelucheBuilder {
-        private long id;
+        private int id;
         private String relleno;
         private String materialExterior;
         private String color;
 
-        public PelucheBuilder id(long id) {
+        public PelucheBuilder id(int id) {
             this.id = id;
             return this;
         }
@@ -68,15 +72,23 @@ public class Peluche implements Juguete {
         public Peluche build() {
             return new Peluche(id, relleno, materialExterior, color);
         }
+
+
+		
     }
 
+  //fin clase Builder 
+    
+    
     @Override
-    public String toString() {
-        return "Peluche{" +
-                "id=" + id +
-                ", relleno='" + relleno + '\'' +
-                ", materialExterior='" + materialExterior + '\'' +
-                ", color='" + color + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "Peluche [id=" + id + ", relleno=" + relleno + ", materialExterior=" + materialExterior + ", color="
+				+ color + "]";
+	}
+
+	@Override
+	public int compareTo(Peluche o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.id, o.id);
+	}
 }

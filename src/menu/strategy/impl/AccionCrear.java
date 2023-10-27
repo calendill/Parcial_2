@@ -4,30 +4,28 @@ import domain.Juguete;
 import menu.factory.impl.CreadorCarrito;
 import menu.factory.impl.CreadorPeluche;
 import menu.strategy.Accion;
+import utils.Kb;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class AccionCrear implements Accion {
 
-    private final Scanner scanner = new Scanner(System.in);
+
     private final CreadorPeluche creadorPeluche = new CreadorPeluche();
     private final CreadorCarrito creadorCarrito = new CreadorCarrito();
 
     @Override
-    public List<Juguete> aplicar(List<Juguete> juguetes) {
-        System.out.println("1.Carrito \n" +
-                "2.Peluche");
-        int opcion = scanner.nextInt();
-        List<Juguete> juguetesCopia = new ArrayList<>(juguetes);
+    public Set<Juguete> aplicar(Set<Juguete> juguetes) {
+        int opcion=Kb.leerEntero("\"1.Carrito\n" + "2.Peluche");
         Juguete jugueteCreado = crearJuguete(opcion);
+        Set<Juguete> juguetesCopia = new LinkedHashSet<>(juguetes);
         jugueteCreado.setId(generarId(juguetes));
         juguetesCopia.add(jugueteCreado);
         return juguetesCopia;
     }
 
-    private long generarId(List<Juguete> juguetes) {
+    private int generarId(Set<Juguete> juguetes) {
         return juguetes.size() + 1;
     }
 

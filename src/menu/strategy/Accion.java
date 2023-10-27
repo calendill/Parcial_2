@@ -1,12 +1,11 @@
 package menu.strategy;
 
 import domain.Juguete;
+import java.util.Set;
+public interface Accion  {
 
-import java.util.List;
-
-public interface Accion {
-
-    List<Juguete> aplicar(List<Juguete> juguetes);
+    Set<Juguete> aplicar(Set<Juguete> juguetes);
 
     Integer getOpcion();
+
 }
